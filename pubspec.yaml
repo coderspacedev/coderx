@@ -1,6 +1,6 @@
 name: coderx
 description: "A simple, fast Flutter state management tool for theme, locale, and UI with builder, listener, and reactive state support."
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/coderspacedev
 repository: https://github.com/coderspacedev/coderx
 issue_tracker: https://github.com/coderspacedev/coderx/issues
