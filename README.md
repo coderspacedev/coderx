@@ -4,13 +4,13 @@ A lightweight and reactive state management system for Flutter.
 Easily manage global or local state, handle async states, computed values, and react to changes with builders, consumers, listeners, and observers — all with simple Dart classes.
 
 ## 🚀 Features
-> ✅ Simple and lightweight
-> 🔄 Reactive updates with ChangeNotifier
-> 💥 Built-in builder, listener, observer, and consumer widgets
-> 📦 Global or local state
-> 🌍 App config (theme, locale) management
-> 🧮 Computed values (CoderComputed)
-> 🔁 Async state (CoderAsync)
+- ✅ Simple and lightweight
+- 🔄 Reactive updates with ChangeNotifier
+- 💥 Built-in builder, listener, observer, and consumer widgets
+- 📦 Global or local state
+- 🌍 App config (theme, locale) management
+- 🧮 Computed values (CoderComputed)
+- 🔁 Async state (CoderAsync)
 
 ## 📦 Installation
 Add this to your pubspec.yaml:
@@ -49,7 +49,7 @@ Use CoderMultiConsumer to listen to multiple states.
 CoderMultiConsumer(
   states: [themeMode, locale],
   builder: (context) {
-  return MaterialApp(
+    return MaterialApp(
       themeMode: themeMode.value,
       locale: locale.value,
       home: const HomeScreen(),
@@ -110,22 +110,22 @@ CoderConsumer<CoderAsyncState<List<String>>>(
 #### ⚙️ AppConfig (Global States)
 ```dart
 class AppConfig {
-  final themeMode = CoderState<ThemeMode>(ThemeMode.light);
-  final locale = CoderState<Locale>(const Locale('en'));
-  final counter = CoderState<int>(0);
-  final username = CoderState<String>('Guest');
-  final loading = CoderState<bool>(false);
-  final error = CoderState<String?>(null);
-  final userList = CoderState<List<String>>([]);
-  
-  late final welcomeMessage = CoderComputed<String>(
-    compute: () => "👋 Welcome, ${username.value}!",
-    dependencies: [username],
-  );
-  
-  static final AppConfig _instance = AppConfig._internal();
-  factory AppConfig() => _instance;
-  AppConfig._internal();
+final themeMode = CoderState<ThemeMode>(ThemeMode.light);
+final locale = CoderState<Locale>(const Locale('en'));
+final counter = CoderState<int>(0);
+final username = CoderState<String>('Guest');
+final loading = CoderState<bool>(false);
+final error = CoderState<String?>(null);
+final userList = CoderState<List<String>>([]);
+
+late final welcomeMessage = CoderComputed<String>(
+  compute: () => "👋 Welcome, ${username.value}!",
+  dependencies: [username],
+);
+
+static final AppConfig _instance = AppConfig._internal();
+factory AppConfig() => _instance;
+AppConfig._internal();
 }
 
 final config = AppConfig();
