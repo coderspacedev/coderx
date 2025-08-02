@@ -1,17 +1,10 @@
-- Fixed bug
-�
+- Fix bugs
 
-
-- Fixed bug
-
-🎉 Initial preview release of `coderx` – A lightweight, flexible state management solution for Flutter.
-
-## [0.0.2] - 2025-08-01
+## [0.0.2] - 2025-08-02
 
 🎉 Initial preview release of `coderx` – A lightweight, flexible state management solution for Flutter.
 
 ### 🚀 Features
-
 - ✅ `CoderState<T>` – Reactive global state container.
 - ✅ `CoderConsumer` – Widget to rebuild UI on state changes.
 - ✅ `CoderMultiConsumer` – Rebuild on multiple states.
@@ -23,7 +16,6 @@
 - ✅ `CoderConfig` – Prebuilt global states for theme and locale.
 
 ### 🧪 Example Showcase
-
 - Theme toggle (light/dark).
 - Locale setting.
 - Counter.
