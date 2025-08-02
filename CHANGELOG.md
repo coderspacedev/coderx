@@ -1,4 +1,8 @@
 - Fixed bug
+�
+
+
+- Fixed bug
 
 🎉 Initial preview release of `coderx` – A lightweight, flexible state management solution for Flutter.
 
