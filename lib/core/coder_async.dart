@@ -4,8 +4,9 @@ import '../coderx.dart';
 /// It provides a [CoderState] of [CoderAsyncState] which holds loading, data, and error information.
 class CoderAsync<T> {
   /// Holds the current state of the async operation (loading, data, error).
-  final CoderState<CoderAsyncState<T>> state =
-  CoderState(CoderAsyncState<T>.idle());
+  final CoderState<CoderAsyncState<T>> state = CoderState(
+    CoderAsyncState<T>.idle(),
+  );
 
   /// Runs the asynchronous task and updates the [state] accordingly.
   ///
@@ -67,8 +68,7 @@ class CoderAsyncState<T> {
   factory CoderAsyncState.idle() => const CoderAsyncState._();
 
   /// Factory to create a loading state.
-  factory CoderAsyncState.loading() =>
-      const CoderAsyncState._(isLoading: true);
+  factory CoderAsyncState.loading() => const CoderAsyncState._(isLoading: true);
 
   /// Factory to create a state containing [data].
   factory CoderAsyncState.data(T data) =>
@@ -78,4 +78,3 @@ class CoderAsyncState<T> {
   factory CoderAsyncState.error(String error) =>
       CoderAsyncState._(error: error, isLoading: false);
 }
-

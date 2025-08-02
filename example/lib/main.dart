@@ -57,8 +57,9 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   void toggleTheme() {
-    config.themeMode.value =
-    config.themeMode.value == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+    config.themeMode.value = config.themeMode.value == ThemeMode.light
+        ? ThemeMode.dark
+        : ThemeMode.light;
   }
 
   void fetchUsers() async {
@@ -88,9 +89,9 @@ class HomeScreen extends StatelessWidget {
       state: config.error,
       listener: (context, error) {
         if (error?.isNotEmpty ?? false) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('❌ $error')),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text('❌ $error')));
         }
       },
       child: CoderMultiConsumer(
@@ -117,64 +118,65 @@ class HomeScreen extends StatelessWidget {
               child: config.loading.value
                   ? const Center(child: CircularProgressIndicator())
                   : SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(config.welcomeMessage.value),
-                    const SizedBox(height: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(config.welcomeMessage.value),
+                          const SizedBox(height: 16),
 
-                    /// Fetch Users
-                    ElevatedButton(
-                      onPressed: fetchUsers,
-                      child: const Text("Fetch Users"),
+                          /// Fetch Users
+                          ElevatedButton(
+                            onPressed: fetchUsers,
+                            child: const Text("Fetch Users"),
+                          ),
+                          const SizedBox(height: 16),
+                          if (config.userList.value.isNotEmpty)
+                            ...config.userList.value.map(
+                              (user) => Text("👤 $user"),
+                            ),
+
+                          const Divider(),
+
+                          /// Counter
+                          Text("Counter: ${config.counter.value}"),
+                          const SizedBox(height: 16),
+                          ElevatedButton(
+                            onPressed: () => config.counter.value++,
+                            child: const Text("Increment Counter"),
+                          ),
+
+                          const Divider(),
+
+                          /// Fetch Posts (Async State)
+                          ElevatedButton(
+                            onPressed: fetchPosts,
+                            child: const Text("Fetch Posts (Async)"),
+                          ),
+                          const SizedBox(height: 16),
+                          CoderConsumer<CoderAsyncState<List<String>>>(
+                            state: config.posts.state,
+                            builder: (context, asyncState) {
+                              if (asyncState.isLoading) {
+                                return const CircularProgressIndicator();
+                              } else if (asyncState.hasError) {
+                                return Text("❌ ${asyncState.error}");
+                              } else if (asyncState.hasData) {
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text("📬 Posts:"),
+                                    ...asyncState.data!.map(
+                                      (e) => Text("📄 $e"),
+                                    ),
+                                  ],
+                                );
+                              }
+                              return const Text("📭 No posts loaded");
+                            },
+                          ),
+                        ],
+                      ),
                     ),
-                    const SizedBox(height: 16),
-                    if (config.userList.value.isNotEmpty)
-                      ...config.userList.value
-                          .map((user) => Text("👤 $user"))
-                          .toList(),
-
-                    const Divider(),
-
-                    /// Counter
-                    Text("Counter: ${config.counter.value}"),
-                    const SizedBox(height: 16),
-                    ElevatedButton(
-                      onPressed: () => config.counter.value++,
-                      child: const Text("Increment Counter"),
-                    ),
-
-                    const Divider(),
-
-                    /// Fetch Posts (Async State)
-                    ElevatedButton(
-                      onPressed: fetchPosts,
-                      child: const Text("Fetch Posts (Async)"),
-                    ),
-                    const SizedBox(height: 16),
-                    CoderConsumer<CoderAsyncState<List<String>>>(
-                      state: config.posts.state,
-                      builder: (context, asyncState) {
-                        if (asyncState.isLoading) {
-                          return const CircularProgressIndicator();
-                        } else if (asyncState.hasError) {
-                          return Text("❌ ${asyncState.error}");
-                        } else if (asyncState.hasData) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text("📬 Posts:"),
-                              ...asyncState.data!
-                                  .map((e) => Text("📄 $e")),
-                            ],
-                          );
-                        }
-                        return const Text("📭 No posts loaded");
-                      },
-                    ),
-                  ],
-                ),
-              ),
             ),
           );
         },

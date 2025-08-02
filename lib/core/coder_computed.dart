@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'coder_state.dart';
 
-/// CoderComputed<T> is a reactive computed value based on one or more [CoderState]s.
+/// `CoderComputed<T>` is a reactive computed value based on one or more [CoderState]s.
 ///
 /// Whenever any of the dependent states change, the `compute` function is re-evaluated.
 /// If the result is different from the previous value, listeners are notified.
@@ -16,10 +16,7 @@ class CoderComputed<T> extends ChangeNotifier {
   late T _value;
 
   /// Creates a computed state based on given dependencies.
-  CoderComputed({
-    required this.compute,
-    required this.dependencies,
-  }) {
+  CoderComputed({required this.compute, required this.dependencies}) {
     // Initial computation
     _value = compute();
 

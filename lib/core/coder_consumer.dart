@@ -17,17 +17,14 @@ class CoderConsumer<T> extends StatelessWidget {
   final CoderState<T> state;
   final Widget Function(BuildContext, T) builder;
 
-  const CoderConsumer({
-    required this.state,
-    required this.builder,
-    super.key,
-  });
+  const CoderConsumer({required this.state, required this.builder, super.key});
 
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: state, // Listen to CoderState changes
-      builder: (context, _) => builder(context, state.value), // Rebuild with current value
+      builder: (context, _) =>
+          builder(context, state.value), // Rebuild with current value
     );
   }
 }
@@ -59,8 +56,11 @@ class CoderMultiConsumer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: Listenable.merge(states), // Merge multiple listenables into one
-      builder: (context, _) => builder(context), // Rebuild when any state changes
+      animation: Listenable.merge(
+        states,
+      ), // Merge multiple listenables into one
+      builder: (context, _) =>
+          builder(context), // Rebuild when any state changes
     );
   }
 }

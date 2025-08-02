@@ -33,4 +33,3 @@ class CoderState<T> extends ChangeNotifier {
     }
   }
 }
-

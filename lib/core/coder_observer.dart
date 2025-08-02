@@ -50,4 +50,3 @@ class CoderObserver<T> {
   /// Should be called when the observer is no longer needed.
   void dispose() => state.removeListener(_notify);
 }
-

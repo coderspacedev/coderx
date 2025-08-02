@@ -12,11 +12,7 @@ class CoderBuilder<T> extends StatefulWidget {
   /// Builder function which provides the latest value of the state.
   final Widget Function(BuildContext, T) builder;
 
-  const CoderBuilder({
-    required this.state,
-    required this.builder,
-    super.key,
-  });
+  const CoderBuilder({required this.state, required this.builder, super.key});
 
   @override
   State<CoderBuilder<T>> createState() => _CoderBuilderState<T>();
